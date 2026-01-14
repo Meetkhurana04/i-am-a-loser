@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Distraction Blocker - Voice Unlock",
+  "version": "1.0.0",
+  "description": "Block distracting websites and unlock them by loudly admitting you're a loser. The louder you say it, the longer you get.",
+  "author": "Your Name",
+  
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation",
+    "alarms"
+  ],
+  
+  "host_permissions": [
+    "*://*.instagram.com/*",
+    "*://*.youtube.com/*",
+    "*://*.tiktok.com/*",
+    "*://*.twitter.com/*",
+    "*://*.x.com/*",
+    "*://*.facebook.com/*",
+    "*://*.reddit.com/*",
+    "*://*/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles/overlay.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["styles/overlay.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

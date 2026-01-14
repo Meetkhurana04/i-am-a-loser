@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distraction Blocker Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-icon">🚫</div>
+      <h1>Distraction Blocker</h1>
+      <p class="tagline">Earn your distraction time</p>
+    </header>
+
+    <!-- Master Toggle -->
+    <section class="section master-toggle">
+      <label class="toggle-container">
+        <span class="toggle-label">Extension Enabled</span>
+        <input type="checkbox" id="master-toggle" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section">
+      <h2>📊 Today's Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-value" id="blocks-today">0</span>
+          <span class="stat-label">Sites Blocked</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="unlocks-today">0</span>
+          <span class="stat-label">Voice Unlocks</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="time-saved">0m</span>
+          <span class="stat-label">Time Saved</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Currently Unlocked -->
+    <section class="section" id="unlocked-section">
+      <h2>🔓 Currently Unlocked</h2>
+      <div id="unlocked-list" class="unlocked-list">
+        <p class="empty-message">No sites currently unlocked</p>
+      </div>
+    </section>
+
+    <!-- Blocked Sites List -->
+    <section class="section">
+      <h2>🚫 Blocked Sites</h2>
+      <div id="sites-list" class="sites-list">
+        <!-- Populated by JavaScript -->
+      </div>
+      
+      <!-- Add Site Form -->
+      <div class="add-site-form">
+        <input 
+          type="text" 
+          id="new-site-input" 
+          placeholder="Add domain (e.g., example.com)"
+          class="input-field"
+        >
+        <button id="add-site-btn" class="btn btn-primary">+ Add</button>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section class="section">
+      <h2>⚙️ Settings</h2>
+      
+      <div class="setting-item">
+        <label for="unlock-phrase">Unlock Phrase:</label>
+        <input 
+          type="text" 
+          id="unlock-phrase" 
+          class="input-field"
+          value="i'm a loser"
+        >
+        <p class="setting-hint">What you'll need to say to unlock sites</p>
+      </div>
+
+      <div class="setting-item">
+        <h3>🔊 Volume → Duration</h3>
+        <p class="setting-hint">Louder = more time unlocked</p>
+        <div class="volume-chart">
+          <div class="volume-row">
+            <span class="volume-emoji">🤫</span>
+            <span class="volume-level">Whisper</span>
+            <span class="volume-time">30 sec</span>
+          </div>
+          <div class="volume-row">
+            <span class="volume-emoji">😶</span>
+            <span class="volume-level">Quiet</span>
+            <span class="volume-time">1 min</span>
+          </div>
+          <div class="volume-row">
+            <span class="volume-emoji">🗣️</span>
+            <span class="volume-level">Normal</span>
+            <span class="volume-time">2 min</span>
+          </div>
+          <div class="volume-row">
+            <span class="volume-emoji">📢</span>
+            <span class="volume-level">Loud</span>
+            <span class="volume-time">5 min</span>
+          </div>
+          <div class="volume-row highlight">
+            <span class="volume-emoji">🔊</span>
+            <span class="volume-level">SHOUTING</span>
+            <span class="volume-time">10 min</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <button id="reset-stats-btn" class="btn btn-secondary">Reset Stats</button>
+      <span class="version">v1.0.0</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

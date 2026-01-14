@@ -1,0 +1,377 @@
+/**
+ * Distraction Blocker - Overlay Styles
+ * Injected into blocked pages
+ */
+
+/* ============================================================================
+   OVERLAY CONTAINER
+   ============================================================================ */
+
+#distraction-blocker-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: white !important;
+  overflow: hidden !important;
+}
+
+/* Animated background */
+#distraction-blocker-overlay::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* ============================================================================
+   CONTENT
+   ============================================================================ */
+
+.blocker-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px;
+  max-width: 500px;
+}
+
+.blocker-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.blocker-title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blocker-domain {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 20px;
+  font-family: 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.blocker-message {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* ============================================================================
+   UNLOCK SECTION
+   ============================================================================ */
+
+.blocker-unlock-section {
+  margin-top: 20px;
+}
+
+.blocker-btn {
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.blocker-btn:not(.secondary) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.blocker-btn:not(.secondary):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+}
+
+.blocker-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  font-size: 14px;
+  padding: 10px 20px;
+  margin-top: 15px;
+}
+
+.blocker-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.blocker-hint {
+  font-size: 13px;
+  color: #888;
+  margin-top: 15px;
+  line-height: 1.5;
+}
+
+.blocker-hint em {
+  color: #ffd93d;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ============================================================================
+   LISTENING STATE
+   ============================================================================ */
+
+.blocker-listening {
+  margin-top: 20px;
+}
+
+.blocker-listening.hidden {
+  display: none;
+}
+
+.blocker-mic-animation {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+}
+
+.mic-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #667eea;
+  border-radius: 50%;
+  animation: mic-pulse 1.5s ease-out infinite;
+}
+
+@keyframes mic-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.mic-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  animation: mic-bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes mic-bounce {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.listening-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 10px;
+}
+
+.blocker-phrase {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.blocker-phrase strong {
+  color: #ff6b6b;
+  font-size: 18px;
+}
+
+/* Volume Meter */
+.volume-meter {
+  width: 80%;
+  max-width: 300px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+}
+
+.volume-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77);
+  border-radius: 10px;
+  transition: width 0.1s ease;
+}
+
+.volume-label {
+  font-size: 14px;
+  color: #aaa;
+  font-family: 'Courier New', monospace;
+}
+
+/* ============================================================================
+   RESULT STATE
+   ============================================================================ */
+
+.blocker-result {
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.blocker-result.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.result-message {
+  font-size: 18px;
+  color: #ccc;
+}
+
+/* ============================================================================
+   COUNTDOWN DISPLAY
+   ============================================================================ */
+
+.blocker-countdown {
+  margin-top: 30px;
+}
+
+.blocker-countdown.hidden {
+  display: none;
+}
+
+.countdown-label {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.countdown-timer {
+  background: rgba(107, 203, 119, 0.2);
+  border: 2px solid #6bcb77;
+  border-radius: 12px;
+  padding: 15px 30px;
+  display: inline-block;
+}
+
+#countdown-value {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: #6bcb77;
+}
+
+/* ============================================================================
+   FLOATING COUNTDOWN
+   ============================================================================ */
+
+.blocker-floating {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+  color: white !important;
+  padding: 12px 20px !important;
+  border-radius: 50px !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3) !important;
+  z-index: 2147483646 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  animation: slideIn 0.3s ease !important;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.floating-label {
+  color: #aaa;
+}
+
+#floating-countdown-value {
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: #ffd93d;
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.blocker-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+}
+
+/* ============================================================================
+   UTILITY
+   ============================================================================ */
+
+.hidden {
+  display: none !important;
+}
