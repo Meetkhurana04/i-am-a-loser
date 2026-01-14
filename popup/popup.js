@@ -96,7 +96,7 @@ function renderSitesList() {
       <span class="site-name">${escapeHtml(site.name || site.domain)}</span>
       <span class="site-domain">${escapeHtml(site.domain)}</span>
       <button class="btn-icon delete-site" data-index="${index}" title="Remove site">
-        🗑️
+         <i class="fa-solid fa-trash"></i>
       </button>
     `;
     container.appendChild(siteElement);

@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
   <title>Distraction Blocker Settings</title>
   <link rel="stylesheet" href="popup.css">
 </head>
@@ -10,7 +15,7 @@
   <div class="popup-container">
     <!-- Header -->
     <header class="popup-header">
-      <div class="header-icon">🚫</div>
+      <div class="header-icon"><i class="fa-solid fa-ban"></i></div>
       <h1>Distraction Blocker</h1>
       <p class="tagline">Earn your distraction time</p>
     </header>
@@ -26,7 +31,7 @@
 
     <!-- Stats Section -->
     <section class="section stats-section">
-      <h2>📊 Today's Stats</h2>
+      <h2> Today's Stats</h2>
       <div class="stats-grid">
         <div class="stat-item">
           <span class="stat-value" id="blocks-today">0</span>
@@ -45,7 +50,7 @@
 
     <!-- Currently Unlocked -->
     <section class="section" id="unlocked-section">
-      <h2>🔓 Currently Unlocked</h2>
+      <h2>Currently Unlocked</h2>
       <div id="unlocked-list" class="unlocked-list">
         <p class="empty-message">No sites currently unlocked</p>
       </div>
@@ -53,7 +58,7 @@
 
     <!-- Blocked Sites List -->
     <section class="section">
-      <h2>🚫 Blocked Sites</h2>
+      <h2> Blocked Sites</h2>
       <div id="sites-list" class="sites-list">
         <!-- Populated by JavaScript -->
       </div>
