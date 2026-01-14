@@ -118,7 +118,7 @@ function showBlockOverlay() {
 function createOverlayHTML() {
   return `
     <div class="blocker-content">
-      <div class="blocker-icon">🚫</div>
+      <div class="blocker-icon"></div>
       <h1 class="blocker-title">SITE BLOCKED</h1>
       <p class="blocker-domain">${escapeHtml(currentDomain)}</p>
       <p class="blocker-message">
@@ -128,8 +128,9 @@ function createOverlayHTML() {
       
       <div class="blocker-unlock-section">
         <button id="blocker-voice-btn" class="blocker-btn">
-          🎤 Voice Unlock
+           Voice Unlock
         </button>
+        <br>
         <p class="blocker-hint">
           Say the magic words <em>loudly</em> to unlock.<br>
           The louder you say it, the longer you get!
@@ -713,19 +714,29 @@ window.addEventListener('load', init);
 
 // Handle visibility changes (when user returns to tab)
 document.addEventListener('visibilitychange', async () => {
-  if (document.visibilityState === 'visible') {
+  if (document.visibilityState !== 'visible') return;
+
+  // Extension context alive check
+  if (!chrome?.runtime?.id) return;
+
+  try {
     const result = await chrome.runtime.sendMessage({
       action: 'checkBlocked',
       url: window.location.href
     });
-    
-    if (result.shouldBlock && !isOverlayVisible) {
+
+    if (result?.shouldBlock && !isOverlayVisible) {
       currentDomain = result.domain;
       showBlockOverlay();
-    } else if (!result.shouldBlock && isOverlayVisible) {
+    } else if (!result?.shouldBlock && isOverlayVisible) {
       hideBlockOverlay();
     }
+
+  } catch (err) {
+    // Context invalidated / extension reloaded
+    console.warn('Visibility check skipped:', err.message);
   }
 });
+
 
 console.log('[Blocker] Content script loaded');
